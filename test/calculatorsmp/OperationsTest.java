@@ -56,18 +56,24 @@ public class OperationsTest {
         }
 
         // Verifica que todos los operadores (+, -, *, /) fueron seleccionados
-        assertArrayEquals(expectedOperators, operators.toArray(), "No se seleccionaron todos los operadores.");
+        assertArrayEquals(expectedOperators, operators.toArray(), "El metodo MakeFormula no incluye la operacion de division");
     }
     
-    //@DisplayName("")
+    
     @Test
-    public void TCS01() {
-        System.out.println("Solve");
-        String formula = "";
-        String expResult = "";
+    @DisplayName("Evaluar la expresión 4*20+33+15 con el método Solve")
+    public void testSolve01() {
+        // Expresión a evaluar
+        String formula = "4*20+33+15";
+        
+        // Resultado esperado
+        String expected = "4*20+33+15=128";
+        
+        // Ejecutar el método Solve
         String result = Operations.Solve(formula);
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
+        
+        // Comparar el resultado con el valor esperado
+        assertEquals(expected, result, "La evaluación de la expresión 4*20+33+15 es incorrecta");
     }
 
 }
