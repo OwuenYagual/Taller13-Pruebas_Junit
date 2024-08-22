@@ -93,5 +93,25 @@ public class OperationsTest {
         String result = Operations.Solve(formula);
         assertEquals(expected, result, "La resolución de la expresión con resultado negativo falló.");
     }
+    
+    @Test
+    @DisplayName("Test: Verificar que la fórmula no sea nula, vacía y contenga operadores válidos")
+    void testMakeFormula02() {
+        // Invocamos el método MakeFormula
+        String formula = Operations.MakeFormula();
+
+        // Verificamos si la fórmula generada no es nula y no está vacía
+        assertNotNull(formula, "La fórmula generada es nula.");
+        assertFalse(formula.isEmpty(), "La fórmula generada está vacía.");
+
+        // Verificamos si la fórmula generada contiene al menos un operador de los esperados
+        boolean containsOperator = formula.contains("+") || formula.contains("-") ||
+                                   formula.contains("*") || formula.contains("/");
+        assertTrue(containsOperator, "La fórmula generada no contiene ningún operador.");
+
+        // Verificamos si la fórmula generada solo contiene caracteres válidos (números y operadores)
+        boolean isValid = formula.matches("[0-9+\\-*/]+");
+        assertTrue(isValid, "La fórmula generada contiene caracteres inválidos.");
+    }
 
 }
